@@ -1,9 +1,17 @@
+# Use an appropriate base image
+FROM ubuntu:latest
+
+# Set the working directory
 WORKDIR /usr/src/app
 
-RUN apt-get update && apt-get
+# Update and install necessary packages
+RUN apt-get update && apt-get install -y curl bash
 
+# Install x-ui
 RUN bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
 
-CMD [ "x-ui start" ]
+# Set the command to start x-ui
+CMD [ "/bin/bash", "-c", "x-ui start" ]
 
+# Expose the required port
 EXPOSE 2053
